@@ -41,7 +41,6 @@ async function processBatch() {
         `;
         await pool.query(sql, values);
     } catch (error) {
-        console.error('Error saving to MySQL:', error.message);
     } finally {
         accumulatedData = []; // Clear the accumulated data after insertion
         isProcessing = false;
@@ -51,7 +50,6 @@ async function processBatch() {
 
 redis.on("message", async (channel, message) => {
     if (!isJson(message)) {
-        console.log("Trash message: ", message);
         return;
     }
 
